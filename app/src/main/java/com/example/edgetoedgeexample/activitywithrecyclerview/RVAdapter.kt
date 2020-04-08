@@ -1,6 +1,5 @@
 package com.example.edgetoedgeexample.activitywithrecyclerview
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +10,12 @@ import kotlinx.android.synthetic.main.activity_with_recyclerview_row.view.*
 class RVAdapter(private val cells: ArrayList<String>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    lateinit var context: Context
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.activity_with_recyclerview_row, parent, false)
-        val vh = ViewHolder(v)
-        context = parent.context
-        return vh
+        return ViewHolder(v)
     }
 
     override fun getItemCount(): Int {
