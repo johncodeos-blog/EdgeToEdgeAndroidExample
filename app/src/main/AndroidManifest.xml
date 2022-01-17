@@ -11,11 +11,15 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activitywithrecyclerview.RecyclerViewActivity"
+            android:exported="true"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".FullScreenActivity"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

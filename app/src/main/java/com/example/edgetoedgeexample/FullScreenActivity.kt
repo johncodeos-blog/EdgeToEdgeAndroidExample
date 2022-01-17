@@ -15,7 +15,7 @@ class FullScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_full_screen)
 
-        //Photo Credits: https://unsplash.com/photos/G85VuTpw6jg
+        // Photo Credits: https://unsplash.com/photos/G85VuTpw6jg
         full_screen_photo_view.setImageResource(R.drawable.airplane)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
