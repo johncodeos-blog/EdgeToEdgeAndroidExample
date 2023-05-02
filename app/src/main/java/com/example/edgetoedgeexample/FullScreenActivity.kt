@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_full_screen.*
+import com.github.chrisbanes.photoview.PhotoView
 
 
 class FullScreenActivity : AppCompatActivity() {
@@ -15,8 +15,10 @@ class FullScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_full_screen)
 
+        val fullScreenPhotoView = findViewById<PhotoView>(R.id.full_screen_photo_view)
+
         // Photo Credits: https://unsplash.com/photos/G85VuTpw6jg
-        full_screen_photo_view.setImageResource(R.drawable.airplane)
+        fullScreenPhotoView.setImageResource(R.drawable.airplane)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             if (isGestureNavigationEnabled(this.contentResolver)) {

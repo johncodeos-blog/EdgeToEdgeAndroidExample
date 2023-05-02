@@ -3,18 +3,19 @@ package com.example.edgetoedgeexample.activitywithrecyclerview
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.edgetoedgeexample.R
-import kotlinx.android.synthetic.main.activity_with_recyclerview_row.view.*
 
 class RVAdapter(private val cells: ArrayList<String>?) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<RVAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val rowTitleTextView: TextView = itemView.findViewById(R.id.row_title_textview)
+    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_with_recyclerview_row, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_with_recyclerview_row, parent, false)
         return ViewHolder(v)
     }
 
@@ -22,7 +23,7 @@ class RVAdapter(private val cells: ArrayList<String>?) :
         return cells?.size ?: 0
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder.itemView.row_title_textview.text = cells?.get(position) ?: ""
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.rowTitleTextView.text = cells?.get(position) ?: ""
     }
 }

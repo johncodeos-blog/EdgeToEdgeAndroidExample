@@ -6,11 +6,12 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.edgetoedgeexample.R
-import kotlinx.android.synthetic.main.activity_recycler_view.*
 
 
 class RecyclerViewActivity : AppCompatActivity() {
@@ -22,23 +23,26 @@ class RecyclerViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view)
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        val recyclerViewContentId = findViewById<RelativeLayout>(R.id.recycler_view_content_id)
+
         // Setting layout and divider for the RecyclerView
         val llm = LinearLayoutManager(this)
-        recycler_view.layoutManager = llm
-        recycler_view.setHasFixedSize(true)
-        val dividerItemDecoration = DividerItemDecoration(recycler_view.context, llm.orientation)
-        recycler_view.addItemDecoration(dividerItemDecoration)
+        recyclerView.layoutManager = llm
+        recyclerView.setHasFixedSize(true)
+        val dividerItemDecoration = DividerItemDecoration(recyclerView.context, llm.orientation)
+        recyclerView.addItemDecoration(dividerItemDecoration)
 
         // Get the data and update the RecyclerView
         loadData()
         adapter = RVAdapter(itemsArray)
-        recycler_view.adapter = adapter
+        recyclerView.adapter = adapter
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             if (isGestureNavigationEnabled(this.contentResolver)) {
                 // Disable clipping of the RecyclerView content when we use padding
-                recycler_view.clipToPadding = false
+                recyclerView.clipToPadding = false
 
                 // Make the Gesture Navigation Bar transparent
                 window.navigationBarColor = Color.TRANSPARENT
@@ -48,11 +52,11 @@ class RecyclerViewActivity : AppCompatActivity() {
                     (View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
 
                 // Set padding for the Views (RecyclerView and Relative Layout) from the System Views (Gesture Navigation Bar, Toolbar)
-                recycler_view_content_id.setOnApplyWindowInsetsListener { v, insets ->
+                recyclerViewContentId.setOnApplyWindowInsetsListener { v, insets ->
                     val topPadding = insets.systemWindowInsetTop
                     val bottomPadding = insets.systemWindowInsetBottom
-                    recycler_view_content_id.setPadding(0, topPadding, 0, 0)
-                    recycler_view.setPadding(0, 0, 0, bottomPadding)
+                    recyclerViewContentId.setPadding(0, topPadding, 0, 0)
+                    recyclerView.setPadding(0, 0, 0, bottomPadding)
                     insets.consumeSystemWindowInsets()
                 }
             }
